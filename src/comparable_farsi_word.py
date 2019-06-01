@@ -5,6 +5,14 @@ except ModuleNotFoundError:
 
 
 class ComparableFarsiWord(str):
+	'''
+	ComparableFarsiWord: A subclass of the "str" class which
+	overrides comparison operators. When a collection of ComparableFarsiWord
+	is sorted, these overriding methods are called.
+
+	The COMPARE function makes use of the character values defined in
+	farsi_character_values.py.
+	'''
 	def __new__(cls, word = ''):
 		return str.__new__(cls, word)
 

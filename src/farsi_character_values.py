@@ -1,5 +1,5 @@
 '''
-This purpose of this map is to establish an ordering of the Farsi
+This purpose of this map is to establish a reliable ordering of the Farsi
 characters, in order to make sorting Farsi words possible. See the project's
 README for a detailed explanation.
 '''
