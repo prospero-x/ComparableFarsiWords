@@ -1,7 +1,7 @@
-## Comparable Farsi Words
+# Comparable Farsi Words
 Use this code to compute the lexicographic order of a list of Farsi words.
 
-#### The Problem
+## The Problem
 If I start an interactive python shell in my terminal, I can print out the Unicode value for every character in the Farsi alphabet. Note: this was done using macOS 10.12.6, using the "Persian - Standard" Keyboard, and Python 3.6.
 ```
 MacBook-Pro-4:Farsi xerxes$ python
@@ -48,14 +48,14 @@ Type "help", "copyright", "credits" or "license" for more information.
 ```
 As you can see, using Mac's "Persian Standard" Keyboard, when I iterate over Farsi alphabet in order, I get out-of-order Unicode values. So, what's going on?
 
-#### Background
+## Background
 The Farsi alphabet has 32 characters, 26 of which are shared with the Arabic alphabet. Due to this overlap, there is no Unicode Block dedicated to Farsi characters. Instead, when a Farsi keyboard is used on a computer, the OS binds the keys of the keyboard to the Arabic Unicode Block `U+0600 - U+06FF`, which contains characters used in Arabic, Pashto, Farsi, and Urdu.
 
 For more information:
 -  Unicode Overview: https://en.wikipedia.org/wiki/Unicode
 -  Arabic Unicode Block: https://www.unicode.org/charts/PDF/U0600.pdf
 
-#### The Arabic Unicode Block
+## The Arabic Unicode Block
 
 In the Arabic Unicode Block, the Arabic alphabet is assigned, in order, to values at the beginning of the block. Farsi characters which are not part of the Arabic alphabet are assigned to numbers AFTER the Arabic alphabet. The chart looks something like this:
 
