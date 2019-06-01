@@ -1,6 +1,12 @@
 # Comparable Farsi Words
 Use this code to compute the lexicographic order of a list of Farsi words.
 
+## Runnning the Tests
+To run the tests, execute `$ pytest` from the project root.
+
+## Developer
+You should regularly execute `flake8` from the root of this project. Specific flake rules to ignore are specified in `setup.cfg`
+
 ## The Problem
 If I start an interactive python shell in my terminal, I can print out the Unicode value for every character in the Farsi alphabet. Note: this was done using macOS 10.12.6, using the "Persian - Standard" Keyboard, and Python 3.6.
 ```
