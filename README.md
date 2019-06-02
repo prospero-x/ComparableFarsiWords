@@ -83,4 +83,4 @@ In the Arabic Unicode Block, the Arabic alphabet is assigned, in order, to value
 This explains the sporadic assignments of Unicode Values to Farsi characters. When a Farsi character is **shared by Arabic**, it can be represented using an Arabic character, which has a value at the lower-end of the Arabic Unicode Block. On the other hand, when a Farsi character is **not used in Arabic**, a Unicode value from the upper-end of the Arabic Unicode Block must be used.
 
 Therefore, Unicode values of Farsi Characters cannot be relied on to establish
-order between the characters. Hence the this project.
+order between the characters. Hence why I made this project.
