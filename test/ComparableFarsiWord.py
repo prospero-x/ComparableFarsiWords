@@ -57,3 +57,15 @@ class TestComparableFarsiWord(unittest2.TestCase):
 		word2 = ComparableFarsiWord("سنجیده بودید")
 
 		self.assertEqual(word1, word2)
+
+	def test_accents_equal(self):
+		word1 = ComparableFarsiWord("بودَن")
+		word2 = ComparableFarsiWord("بودن")
+
+		self.assertEqual(word1, word2)
+
+	def test_accents_different(self):
+		word1 = ComparableFarsiWord("مَرسی")
+		word2 = ComparableFarsiWord("آرسی")
+
+		self.assertGreater(word1, word2)

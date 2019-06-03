@@ -1,7 +1,7 @@
 try:
-	from farsi_character_values import vals
+	from farsi_character_values import vals, accents
 except ModuleNotFoundError:
-	from .farsi_character_values import vals
+	from .farsi_character_values import vals, accents
 
 
 class ComparableFarsiWord(str):
@@ -15,6 +15,18 @@ class ComparableFarsiWord(str):
 	'''
 	def __new__(cls, word = ''):
 		return str.__new__(cls, word)
+
+	def remove_accents(self, word):
+		'''
+		Accents are their own Unicode Character. We ignore them
+		when determining the lexicographic value of a word.
+		'''
+		no_accents = ""
+		for character in word:
+			if character not in accents:
+				no_accents += character
+
+		return no_accents
 
 	def compare(self, other):
 		'''
@@ -43,24 +55,27 @@ class ComparableFarsiWord(str):
 			else:
 				return 0
 
-		max_self = len(self) - 1
-		max_other = len(other) - 1
+		this_str = self.remove_accents(self)
+		other_str = self.remove_accents(other)
+
+		max_self = len(this_str) - 1
+		max_other = len(other_str) - 1
 		i = 0
 		while i <= max_self and i <= max_other:
-			if self[i] not in vals:
+			if this_str[i] not in vals:
 				raise ValueError(
 					"Unrecognized character '%s'." % self[i]
 				)
 
-			if other[i] not in vals:
+			if other_str[i] not in vals:
 				raise ValueError(
 					"Unrecognized character '%s'." % other[i]
 				)
 
-			string1_val = vals[self[i]]
-			string2_val = vals[other[i]]
+			this_val = vals[this_str[i]]
+			other_val = vals[other_str[i]]
 
-			if string1_val == string2_val:
+			if this_val == other_val:
 				# end of both strings -> they're equal
 				if i == max_self and i == max_other:
 					return 0
@@ -78,7 +93,7 @@ class ComparableFarsiWord(str):
 				continue
 
 			# Found unequal characters.
-			return -1 if string1_val < string2_val else 1
+			return -1 if this_val < other_val else 1
 
 	def __lt__(self, other):
 		c = self.compare(other)
