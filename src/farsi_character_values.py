@@ -1,11 +1,28 @@
+accent_values = {
+	'َ': 1,
+	'ِ': 2,
+	'ُ': 3,
+}
+
+number_values = {
+	'۰': 0,
+	'۱': 1,
+	'۲': 2,
+	'۳': 3,
+	'۴': 4,
+	'۵': 5,
+	'۶': 6,
+	'۷': 7,
+	'۸': 8,
+	'۹': 9,
+}
+
 '''
 This purpose of this map is to establish a reliable ordering of the Farsi
 characters, in order to make sorting Farsi words possible. See the project's
 README for a detailed explanation.
 '''
-accents = {'ُ', 'ِ', 'َ', ''}
-
-vals = {
+character_values = {
 	' ': 0,
 	'آ': 1,
 	'ا': 2,

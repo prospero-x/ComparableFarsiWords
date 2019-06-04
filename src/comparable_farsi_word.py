@@ -1,7 +1,7 @@
 try:
-	from farsi_character_values import vals, accents
+	from farsi_character_values import character_values, accent_values
 except ModuleNotFoundError:
-	from .farsi_character_values import vals, accents
+	from .farsi_character_values import character_values, accent_values
 
 
 class ComparableFarsiWord(str):
@@ -16,6 +16,9 @@ class ComparableFarsiWord(str):
 	def __new__(cls, word = ''):
 		return str.__new__(cls, word)
 
+	def __hash__(self):
+		return hash(str(self))
+
 	def remove_accents(self, word):
 		'''
 		Accents are their own Unicode Character. We ignore them
@@ -23,7 +26,7 @@ class ComparableFarsiWord(str):
 		'''
 		no_accents = ""
 		for character in word:
-			if character not in accents:
+			if character not in accent_values:
 				no_accents += character
 
 		return no_accents
@@ -62,18 +65,18 @@ class ComparableFarsiWord(str):
 		max_other = len(other_str) - 1
 		i = 0
 		while i <= max_self and i <= max_other:
-			if this_str[i] not in vals:
+			if this_str[i] not in character_values:
 				raise ValueError(
 					"Unrecognized character '%s'." % self[i]
 				)
 
-			if other_str[i] not in vals:
+			if other_str[i] not in character_values:
 				raise ValueError(
 					"Unrecognized character '%s'." % other[i]
 				)
 
-			this_val = vals[this_str[i]]
-			other_val = vals[other_str[i]]
+			this_val = character_values[this_str[i]]
+			other_val = character_values[other_str[i]]
 
 			if this_val == other_val:
 				# end of both strings -> they're equal
@@ -92,7 +95,7 @@ class ComparableFarsiWord(str):
 				i += 1
 				continue
 
-			# Found unequal characters.
+			# Found unequal 	.
 			return -1 if this_val < other_val else 1
 
 	def __lt__(self, other):
